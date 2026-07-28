@@ -12,3 +12,8 @@ print(df.info())
 
 print("\nDuplicate rows:", df.duplicated().sum())
 print("Duplicate player names:", df["PLAYER"].duplicated().sum())
+
+top_scorers = df.sort_values("PTS", ascending=False).head(10).reset_index(drop=True)
+top_scorers.index += 1
+print("\nTop 10 scorers:")
+print(top_scorers[["PLAYER", "TEAM", "PTS"]])

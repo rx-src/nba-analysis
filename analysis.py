@@ -17,3 +17,21 @@ top_scorers = df.sort_values("PTS", ascending=False).head(10).reset_index(drop=T
 top_scorers.index += 1
 print("\nTop 10 scorers:")
 print(top_scorers[["PLAYER", "TEAM", "PTS"]])
+
+df["PTS_PER_MIN"] = df["PTS"] / df["MIN"]
+
+most_efficient = df.sort_values("PTS_PER_MIN", ascending=False).head(10).reset_index(drop=True)
+most_efficient.index += 1
+
+print("\nTop 10 most efficient scorers (points per minute):")
+print(most_efficient[["PLAYER", "TEAM", "PTS", "MIN", "PTS_PER_MIN"]])
+
+qualified = df[df["MIN"] > 500]
+
+df["PTS_PER_MIN"] = qualified["PTS"] / qualified["MIN"]
+
+most_efficient = qualified.sort_values("PTS_PER_MIN", ascending=False).head(10).reset_index(drop=True)
+most_efficient.index += 1
+
+print("\nTop 10 most efficient scorers (min. 500 minutes played):")
+print(most_efficient[["PLAYER", "TEAM", "PTS", "MIN", "PTS_PER_MIN"]])

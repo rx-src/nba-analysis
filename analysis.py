@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("nba_player_stats_2026.csv")
 
@@ -40,3 +41,12 @@ team_efficiency = df.groupby("TEAM")["EFF"].mean().sort_values(ascending=False)
 
 print("\nAverage player efficiency (EFF) by team:")
 print(team_efficiency.head(10))
+
+plt.figure()
+plt.scatter(df["MIN"], df["PTS"], alpha=0.5)
+plt.title("Minutes Played vs. Points Scored")
+plt.xlabel("Minutes Played")
+plt.ylabel("Points Scored")
+plt.tight_layout()
+plt.savefig("minutes_vs_points.png")
+print("\nScatter plot saved as minutes_vs_points.png")

@@ -35,3 +35,8 @@ most_efficient.index += 1
 
 print("\nTop 10 most efficient scorers (min. 500 minutes played):")
 print(most_efficient[["PLAYER", "TEAM", "PTS", "MIN", "PTS_PER_MIN"]])
+
+team_efficiency = df.groupby("TEAM")["EFF"].mean().sort_values(ascending=False)
+
+print("\nAverage player efficiency (EFF) by team:")
+print(team_efficiency.head(10))
